@@ -13,6 +13,6 @@ public:
 
 	cv::CascadeClassifier get_cascade();
 
-	std::vector<cv::Rect> get_rect(cv::Mat raw_img, double scale_factor = 1.1, int min_neighbors = 3, cv::Size min_size = cv::Size());
-	cv::Mat draw_rect(cv::Mat raw_img, double scale_factor = 1.1, int min_neighbors = 3, cv::Size min_size = cv::Size());
+	std::vector<cv::Rect> get_rect(cv::Mat raw_img, double scale_factor = 1.1, int min_neighbors = 3, cv::Size min_size = cv::Size(20, 20));
+	cv::Mat draw_rect(cv::Mat raw_img, double scale_factor = 1.1, int min_neighbors = 3, cv::Size min_size = cv::Size(20, 20));
 };

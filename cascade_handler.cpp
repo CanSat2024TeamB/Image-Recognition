@@ -16,17 +16,17 @@ cv::CascadeClassifier cascade_handler::get_cascade() {
 	return this->cascade;
 }
 
-std::vector<cv::Rect> cascade_handler::get_rect(cv::Mat raw_img, double scale_factor = 1.1, int min_neighbors = 3, cv::Size min_size = cv::Size()) {
+std::vector<cv::Rect> cascade_handler::get_rect(cv::Mat raw_img, double scale_factor, int min_neighbors, cv::Size min_size) {
 	cv::Mat gray_img;
 	cv::cvtColor(raw_img, gray_img, cv::COLOR_BGR2GRAY);
 
-	std::vector<cv::Rect> custom_rect;
-	cascade.detectMultiScale(gray_img, custom_rect, scale_factor, min_neighbors, 0, min_size);
+	std::vector<cv::Rect> rects;
+	cascade.detectMultiScale(gray_img, rects, scale_factor, min_neighbors, 0, min_size);
 
-	return custom_rect;
+	return rects;
 }
 
-cv::Mat cascade_handler::draw_rect(cv::Mat raw_img, double scale_factor = 1.1, int min_neighbors = 3, cv::Size min_size = cv::Size()) {
+cv::Mat cascade_handler::draw_rect(cv::Mat raw_img, double scale_factor, int min_neighbors, cv::Size min_size) {
 	cv::Mat dst_img = raw_img.clone();
 
 	std::vector<cv::Rect> rects = get_rect(raw_img, scale_factor, min_neighbors, min_size);
