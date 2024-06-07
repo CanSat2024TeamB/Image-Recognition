@@ -1,6 +1,6 @@
-#include "cascade_handler.h"
 #include <opencv2/opencv.hpp>
 #include <string>
+#include "cascade_handler.h"
 
 cascade_handler::cascade_handler(std::string path) {
 	set_cascade(path);
