@@ -152,6 +152,7 @@
   </ItemGroup>
   <ItemGroup>
     <Image Include="face_sample.jpg" />
+    <Image Include="face_sample2.jpg" />
     <Image Include="sample.png" />
   </ItemGroup>
   <ItemGroup>
