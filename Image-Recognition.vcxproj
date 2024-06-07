@@ -143,13 +143,19 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="cascade_handler.cpp" />
     <ClCompile Include="main.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="cascade_handler.h" />
     <ClInclude Include="header.h" />
   </ItemGroup>
   <ItemGroup>
+    <Image Include="face_sample.jpg" />
     <Image Include="sample.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Xml Include="haarcascade_frontalface_alt.xml" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
