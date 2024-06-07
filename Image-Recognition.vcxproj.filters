@@ -37,6 +37,9 @@
     <Image Include="face_sample.jpg">
       <Filter>リソース ファイル</Filter>
     </Image>
+    <Image Include="face_sample2.jpg">
+      <Filter>リソース ファイル</Filter>
+    </Image>
   </ItemGroup>
   <ItemGroup>
     <Xml Include="haarcascade_frontalface_alt.xml">
