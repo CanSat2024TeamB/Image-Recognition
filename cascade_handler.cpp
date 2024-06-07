@@ -13,7 +13,7 @@ void cascade_handler::set_cascade(std::string path) {
 }
 
 cv::CascadeClassifier cascade_handler::get_cascade() {
-	return this->cascade;
+	return cascade;
 }
 
 std::vector<cv::Rect> cascade_handler::get_rect(cv::Mat raw_img, double scale_factor, int min_neighbors, cv::Size min_size) {
@@ -31,7 +31,7 @@ cv::Mat cascade_handler::draw_rect(cv::Mat raw_img, double scale_factor, int min
 
 	std::vector<cv::Rect> rects = get_rect(raw_img, scale_factor, min_neighbors, min_size);
 	for (cv::Rect rect : rects) {
-		cv::rectangle(dst_img, rect, cv::Scalar(255, 0, 0), 3);
+		cv::rectangle(dst_img, rect, cv::Scalar(255, 0, 0));
 	}
 
 	return dst_img;
