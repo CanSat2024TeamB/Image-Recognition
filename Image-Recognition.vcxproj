@@ -72,11 +72,11 @@
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <IncludePath>I:\Program Files\opencv\build\include;D:\source\Visual Studio Code\repos\curvus\dlib\dlib-19.24;$(IncludePath)</IncludePath>
-    <LibraryPath>I:\Program Files\opencv\build\x64\vc16\lib;$(LibraryPath)</LibraryPath>
+    <LibraryPath>I:\Program Files\opencv\build\x64\vc16\lib;D:\source\Visual Studio Code\repos\curvus\dlib\build\dlib\Debug;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <IncludePath>I:\Program Files\opencv\build\include;D:\source\Visual Studio Code\repos\curvus\dlib\dlib-19.24;$(IncludePath)</IncludePath>
-    <LibraryPath>I:\Program Files\opencv\build\x64\vc16\lib;$(LibraryPath)</LibraryPath>
+    <LibraryPath>I:\Program Files\opencv\build\x64\vc16\lib;D:\source\Visual Studio Code\repos\curvus\dlib\build\dlib\Release;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
@@ -119,7 +119,7 @@
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <AdditionalLibraryDirectories>;D:\source\Visual Studio Code\repos\curvus\dlib\dlib-19.24\examples\build\dlib\Release;D:\source\Visual Studio Code\repos\curvus\dlib\dlib-19.24\examples\build\dlib\Debug</AdditionalLibraryDirectories>
-      <AdditionalDependencies>opencv_world490d.lib;opencv_world490.lib;dlib19.24.0_release_64bit_msvc1933.lib;dlib19.24.0_debug_64bit_msvc1933.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>opencv_world490d.lib;opencv_world490.lib;dlib19.24.0_debug_64bit_msvc1933.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
@@ -137,7 +137,7 @@
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalDependencies>opencv_world490d.lib;opencv_world490.lib;dlib19.24.0_release_64bit_msvc1933.lib;dlib19.24.0_debug_64bit_msvc1933.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>opencv_world490d.lib;opencv_world490.lib;dlib19.24.0_release_64bit_msvc1933.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <AdditionalLibraryDirectories>I:\Program Files\opencv\build\x64\vc16\bin;D:\source\Visual Studio Code\repos\curvus\dlib\dlib-19.24\examples\build\dlib\Release;D:\source\Visual Studio Code\repos\curvus\dlib\dlib-19.24\examples\build\dlib\Debug</AdditionalLibraryDirectories>
     </Link>
   </ItemDefinitionGroup>
