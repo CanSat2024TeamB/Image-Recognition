@@ -30,6 +30,5 @@ cv::Mat camera_handler::capture() {
 	}
 
 	camera.read(frame);
-
 	return frame;
 }
