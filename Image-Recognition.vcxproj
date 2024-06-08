@@ -145,8 +145,10 @@
   <ItemGroup>
     <ClCompile Include="cascade_handler.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="camera_handler.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="camera_handler.h" />
     <ClInclude Include="cascade_handler.h" />
     <ClInclude Include="header.h" />
   </ItemGroup>
