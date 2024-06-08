@@ -13,6 +13,7 @@ public:
 	void set_camera(int device_id);
 
 	int get_device_id();
+
 	bool if_connected();
 	cv::VideoCapture get_camera();
 	cv::Mat capture();
