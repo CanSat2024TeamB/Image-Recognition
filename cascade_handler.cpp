@@ -2,6 +2,7 @@
 #include <string>
 #include <chrono>
 #include "cascade_handler.h"
+#include "bind.h"
 
 cascade_handler::cascade_handler(std::string path) {
 	set_cascade(path);
@@ -47,4 +48,17 @@ double cascade_handler::measure_prediction_time(cv::Mat test_img) {
 	std::chrono::duration<double, std::milli> elapsed_time = end - start;
 	
 	return elapsed_time.count();
+}
+
+//pybind
+void bind_cascade_handler(pybind11::module& m) {
+	pybind11::module cascade_handler = m.def_submodule("cascade_handler");
+
+	pybind11::class_<cascade_handler>(cascade_handler, "cascade_handler")
+		.def(pybind11::init<std::string>())
+		.def("set_cascade", &cascade_handler::set_cascade, pybind11::arg("path"))
+		.def("get_cascade", &cascade_handler::get_cascade)
+		.def("get_rect", &cascade_handler::get_rect, pybind11::arg("raw_img"), pybind11::arg("scale_factor") = 1.1, pybind11::arg("min_neighbors") = 3, pybind11::arg("min_size") = cv::Size(20, 20))
+		.def("draw_rect", &cascade_handler::draw_rect, pybind11::arg("raw_img"), pybind11::arg("scale_factor") = 1.1, pybind11::arg("min_neighbors") = 3, pybind11::arg("min_size") = cv::Size(20, 20))
+		.def("mesure_prediction_time", &cascade_handler::measure_prediction_time, pybind11::arg("test_img"));
 }

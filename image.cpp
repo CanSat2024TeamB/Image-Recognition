@@ -1,6 +1,7 @@
 #include <opencv2/opencv.hpp>
 #include <string>
 #include "image.h"
+#include "bind.h"
 
 image::image() {}
 
@@ -25,12 +26,26 @@ void image::show_image(std::string window_name) {
 	return;
 }
 
-void image::show_image_until_any_input(std::string window_name, double wait_time) {
+void image::show_image_until_any_input(std::string window_name, double key_wait_time) {
 	show_image(window_name);
-	cv::waitKey(wait_time);
+	cv::waitKey(key_wait_time);
 	return;
 }
 
 bool image::is_empty() {
 	return img.empty();
+}
+
+// pybind
+void bind_image(pybind11::module& m) {
+	pybind11::module image = m.def_submodule("image");
+
+	pybind11::class_<image>(image, "image")
+		.def(pybind11::init<>())
+		.def(pybind11::init<std::string>())
+		.def("read_image", &image::read_image, pybind11::arg("path"))
+		.def("get_image", &image::get_image)
+		.def("show_image", &image::show_image, pybind11::arg("window_name") = "")
+		.def("show_image_until_any_input", &image::show_image_until_any_input, pybind11::arg("window_name") = "", pybind11::arg("key_wait_time") = 0)
+		.def("is_empty", &image::is_empty);
 }
