@@ -144,6 +144,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="cascade_handler.cpp" />
+    <ClCompile Include="image.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="camera_handler.cpp" />
   </ItemGroup>
@@ -151,6 +152,7 @@
     <ClInclude Include="camera_handler.h" />
     <ClInclude Include="cascade_handler.h" />
     <ClInclude Include="header.h" />
+    <ClInclude Include="image.h" />
   </ItemGroup>
   <ItemGroup>
     <Image Include="face_sample.jpg" />
