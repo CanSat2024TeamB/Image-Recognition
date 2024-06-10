@@ -1,5 +1,6 @@
 #include <opencv2/opencv.hpp>
 #include <string>
+#include <chrono>
 #include "cascade_handler.h"
 
 cascade_handler::cascade_handler(std::string path) {
@@ -35,4 +36,15 @@ cv::Mat cascade_handler::draw_rect(cv::Mat raw_img, double scale_factor, int min
 	}
 
 	return dst_img;
+}
+
+double cascade_handler::measure_prediction_time(cv::Mat test_img) {
+	std::chrono::system_clock::time_point start = std::chrono::system_clock::now();
+
+	draw_rect(test_img);
+
+	std::chrono::system_clock::time_point end = std::chrono::system_clock::now();
+	std::chrono::duration<double, std::milli> elapsed_time = end - start;
+	
+	return elapsed_time.count();
 }
