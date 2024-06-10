@@ -38,9 +38,9 @@ bool image::is_empty() {
 
 // pybind
 void bind_image(pybind11::module& m) {
-	pybind11::module image = m.def_submodule("image");
+	pybind11::module m_image = m.def_submodule("image");
 
-	pybind11::class_<image>(image, "image")
+	pybind11::class_<image>(m_image, "image")
 		.def(pybind11::init<>())
 		.def(pybind11::init<std::string>())
 		.def("read_image", &image::read_image, pybind11::arg("path"))

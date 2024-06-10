@@ -37,9 +37,9 @@ cv::Mat camera_handler::capture() {
 
 //pybind
 void bind_camera_handler(pybind11::module& m) {
-	pybind11::module camera_handler = m.def_submodule("camera_handler");
+	pybind11::module m_camera_handler = m.def_submodule("camera_handler");
 
-	pybind11::class_<camera_handler>(camera_handler, "camera_handler")
+	pybind11::class_<camera_handler>(m_camera_handler, "camera_handler")
 		.def(pybind11::init<>())
 		.def(pybind11::init<int>())
 		.def("set_camera", &camera_handler::set_camera, pybind11::arg("device_id"))

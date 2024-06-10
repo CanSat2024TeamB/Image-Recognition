@@ -52,9 +52,9 @@ double cascade_handler::measure_prediction_time(cv::Mat test_img) {
 
 //pybind
 void bind_cascade_handler(pybind11::module& m) {
-	pybind11::module cascade_handler = m.def_submodule("cascade_handler");
+	pybind11::module m_cascade_handler = m.def_submodule("cascade_handler");
 
-	pybind11::class_<cascade_handler>(cascade_handler, "cascade_handler")
+	pybind11::class_<cascade_handler>(m_cascade_handler, "cascade_handler")
 		.def(pybind11::init<std::string>())
 		.def("set_cascade", &cascade_handler::set_cascade, pybind11::arg("path"))
 		.def("get_cascade", &cascade_handler::get_cascade)
