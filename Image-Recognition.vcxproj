@@ -71,12 +71,12 @@
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
-    <IncludePath>I:\Program Files\opencv\build\include;C:\Users\Admin\AppData\Local\Programs\Python\Python310\Lib\site-packages\pybind11\include;C:\Users\Admin\AppData\Local\Programs\Python\Python310\include;$(IncludePath)</IncludePath>
+    <IncludePath>I:\Program Files\opencv\build\include;C:\Users\Admin\AppData\Local\Programs\Python\Python310\include;D:\source\Visual Studio Code\repos\curvus\Image-Recognition\pybind11\include;$(IncludePath)</IncludePath>
     <LibraryPath>I:\Program Files\opencv\build\x64\vc16\lib;C:\Users\Admin\AppData\Local\Programs\Python\Python310\libs;$(LibraryPath)</LibraryPath>
     <TargetExt>.exe</TargetExt>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
-    <IncludePath>I:\Program Files\opencv\build\include;C:\Users\Admin\AppData\Local\Programs\Python\Python310\Lib\site-packages\pybind11\include;C:\Users\Admin\AppData\Local\Programs\Python\Python310\include;$(IncludePath)</IncludePath>
+    <IncludePath>I:\Program Files\opencv\build\include;C:\Users\Admin\AppData\Local\Programs\Python\Python310\include;D:\source\Visual Studio Code\repos\curvus\Image-Recognition\pybind11\include;$(IncludePath)</IncludePath>
     <LibraryPath>I:\Program Files\opencv\build\x64\vc16\lib;C:\Users\Admin\AppData\Local\Programs\Python\Python310\libs;$(LibraryPath)</LibraryPath>
     <TargetExt>.exe</TargetExt>
   </PropertyGroup>
