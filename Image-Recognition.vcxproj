@@ -145,26 +145,26 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="bind.cpp" />
-    <ClCompile Include="cascade_handler.cpp" />
-    <ClCompile Include="image.cpp" />
-    <ClCompile Include="camera_handler.cpp" />
-    <ClCompile Include="main.cpp" />
+    <ClCompile Include="src\bind.cpp" />
+    <ClCompile Include="src\camera_handler.cpp" />
+    <ClCompile Include="src\cascade_handler.cpp" />
+    <ClCompile Include="src\image.cpp" />
+    <ClCompile Include="src\main.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="bind.h" />
-    <ClInclude Include="camera_handler.h" />
-    <ClInclude Include="cascade_handler.h" />
-    <ClInclude Include="header.h" />
-    <ClInclude Include="image.h" />
+    <ClInclude Include="src\bind.h" />
+    <ClInclude Include="src\camera_handler.h" />
+    <ClInclude Include="src\cascade_handler.h" />
+    <ClInclude Include="src\header.h" />
+    <ClInclude Include="src\image.h" />
   </ItemGroup>
   <ItemGroup>
-    <Image Include="face_sample.jpg" />
-    <Image Include="face_sample2.jpg" />
-    <Image Include="sample.png" />
+    <Image Include="assets\face_sample.jpg" />
+    <Image Include="assets\face_sample2.jpg" />
+    <Image Include="assets\sample.png" />
   </ItemGroup>
   <ItemGroup>
-    <Xml Include="haarcascade_frontalface_alt.xml" />
+    <Xml Include="assets\haarcascade_frontalface_alt.xml" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

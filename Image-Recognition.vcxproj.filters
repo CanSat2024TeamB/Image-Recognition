@@ -15,53 +15,51 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="cascade_handler.cpp">
+    <ClCompile Include="src\bind.cpp">
       <Filter>ソース ファイル</Filter>
     </ClCompile>
-    <ClCompile Include="camera_handler.cpp">
+    <ClCompile Include="src\camera_handler.cpp">
       <Filter>ソース ファイル</Filter>
     </ClCompile>
-    <ClCompile Include="image.cpp">
+    <ClCompile Include="src\cascade_handler.cpp">
       <Filter>ソース ファイル</Filter>
     </ClCompile>
-    <ClCompile Include="bind.cpp">
+    <ClCompile Include="src\image.cpp">
       <Filter>ソース ファイル</Filter>
     </ClCompile>
-    <ClCompile Include="main.cpp">
+    <ClCompile Include="src\main.cpp">
       <Filter>ソース ファイル</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="header.h">
+    <ClInclude Include="src\bind.h">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
-    <ClInclude Include="cascade_handler.h">
+    <ClInclude Include="src\camera_handler.h">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
-    <ClInclude Include="camera_handler.h">
+    <ClInclude Include="src\cascade_handler.h">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
-    <ClInclude Include="image.h">
+    <ClInclude Include="src\header.h">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
-    <ClInclude Include="bind.h">
+    <ClInclude Include="src\image.h">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <Image Include="sample.png">
+    <Image Include="assets\face_sample.jpg">
       <Filter>リソース ファイル</Filter>
     </Image>
-    <Image Include="face_sample.jpg">
+    <Image Include="assets\face_sample2.jpg">
       <Filter>リソース ファイル</Filter>
     </Image>
-    <Image Include="face_sample2.jpg">
+    <Image Include="assets\sample.png">
       <Filter>リソース ファイル</Filter>
     </Image>
   </ItemGroup>
   <ItemGroup>
-    <Xml Include="haarcascade_frontalface_alt.xml">
-      <Filter>リソース ファイル</Filter>
-    </Xml>
+    <Xml Include="assets\haarcascade_frontalface_alt.xml" />
   </ItemGroup>
 </Project>
