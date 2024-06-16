@@ -9,4 +9,4 @@ pybind11_add_module(corvus_image header.h bind.h bind.cpp image.h image.cpp casc
 
 find_package(OpenCV REQUIRED)
 include_directories(${OpenCV_INCLUDE_DIRS})
-target_link_libraries(corvus_image PRIVATE pybind11::module ${OpenCV_LIBRARIES})
+target_link_libraries(corvus_image PRIVATE ${OpenCV_LIBRARIES})

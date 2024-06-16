@@ -1,5 +1,6 @@
 #pragma once
 #include <opencv2/opencv.hpp>
+#include <pybind11/numpy.h>
 #include <string>
 
 class image {
@@ -13,7 +14,8 @@ public:
 
 	cv::Mat get_image();
 
-	void show_image(std::string window_name = "");
-	void show_image_until_any_input(std::string window_name = "", double key_wait_time = 0);
+	void show(std::string window_name = "");
+	void show_until_any_input(std::string window_name = "", double key_wait_time = 0);
 	bool is_empty();
+	pybind11::array_t<uint8_t> to_numpy();
 };
