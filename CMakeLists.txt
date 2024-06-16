@@ -5,7 +5,7 @@ set(CMAKE_POSITION_INDEPENDENT_CODE ON)
 
 add_subdirectory(pybind11)
 
-pybind11_add_module(corvus_image header.h bind.h bind.cpp image.h image.cpp cascade_handler.h cascade_handler.cpp camera_handler.h camera_handler.cpp)
+pybind11_add_module(corvus_image src/header.h src/bind.h src/bind.cpp src/image.h src/image.cpp src/cascade_handler.h src/cascade_handler.cpp src/camera_handler.h src/camera_handler.cpp)
 
 find_package(OpenCV REQUIRED)
 include_directories(${OpenCV_INCLUDE_DIRS})
