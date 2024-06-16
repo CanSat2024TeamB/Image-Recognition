@@ -1,12 +1,19 @@
-#include <opencv2/opencv.hpp>
-#include <string>
 #include "image.h"
 #include "bind.h"
 
 image::image() {}
 
+image::image(cv::Mat img) {
+	set_image(img);
+}
+
 image::image(std::string path) {
 	read_image(path);
+}
+
+void image::set_image(cv::Mat img) {
+	this->img = img;
+	return;
 }
 
 void image::read_image(std::string path) {
@@ -54,15 +61,11 @@ pybind11::array_t<uint8_t> image::to_numpy() {
 
 // pybind
 void bind_image(pybind11::module& m) {
-	//pybind11::module m_image = m.def_submodule("image");
-
 	pybind11::class_<image>(m, "image")
 		.def(pybind11::init<>())
 		.def(pybind11::init<std::string>())
 		.def("read_image", &image::read_image, pybind11::arg("path"))
 		.def("get_image", &image::get_image)
-		.def("show_image", &image::show, pybind11::arg("window_name") = "")
-		.def("show_image_until_any_input", &image::show_until_any_input, pybind11::arg("window_name") = "", pybind11::arg("key_wait_time") = 0)
 		.def("is_empty", &image::is_empty)
 		.def("to_numpy", &image::to_numpy);
 }

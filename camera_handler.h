@@ -1,5 +1,6 @@
 #pragma once
 #include <opencv2/opencv.hpp>
+#include "image.h"
 
 class camera_handler {
 private:
@@ -16,5 +17,5 @@ public:
 
 	bool if_connected();
 	cv::VideoCapture get_camera();
-	cv::Mat capture();
+	image capture();
 };

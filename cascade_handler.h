@@ -1,6 +1,7 @@
 #pragma once
 #include <string>
 #include <opencv2/opencv.hpp>
+#include "image.h"
 
 class cascade_handler {
 private:
@@ -13,7 +14,7 @@ public:
 
 	cv::CascadeClassifier get_cascade();
 
-	std::vector<cv::Rect> get_rect(cv::Mat raw_img, double scale_factor = 1.1, int min_neighbors = 3, int min_size_width = 20, int min_size_height = 20);
-	cv::Mat draw_rect(cv::Mat raw_img, double scale_factor = 1.1, int min_neighbors = 3, int min_size_width = 20, int min_size_height = 20);
-	double measure_prediction_time(cv::Mat test_img);
+	std::vector<cv::Rect> get_rect(image raw_img, double scale_factor = 1.1, int min_neighbors = 3, int min_size_width = 20, int min_size_height = 20);
+	image draw_rect(image raw_img, double scale_factor = 1.1, int min_neighbors = 3, int min_size_width = 20, int min_size_height = 20);
+	double measure_prediction_time(image test_img);
 };

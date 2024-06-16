@@ -8,8 +8,10 @@ private:
 	cv::Mat img;
 public:
 	image();
+	image(cv::Mat img);
 	image(std::string path);
 
+	void set_image(cv::Mat img);
 	void read_image(std::string image);
 
 	cv::Mat get_image();
