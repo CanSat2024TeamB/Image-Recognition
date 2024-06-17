@@ -18,6 +18,9 @@ public:
 
 	void show(std::string window_name = "");
 	void show_until_any_input(std::string window_name = "", double key_wait_time = 0);
+	void draw_rect(std::vector<cv::Rect> rects);
 	bool is_empty();
+	int width();
+	int height();
 	pybind11::array_t<uint8_t> to_numpy();
 };
