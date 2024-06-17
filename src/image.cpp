@@ -39,8 +39,23 @@ void image::show_until_any_input(std::string window_name, double key_wait_time) 
 	return;
 }
 
+void image::draw_rect(std::vector<cv::Rect> rects) {
+	for (cv::Rect rect : rects) {
+		cv::rectangle(img, rect, cv::Scalar(255, 0, 0));
+	}
+	return;
+}
+
 bool image::is_empty() {
 	return img.empty();
+}
+
+int image::width() {
+	return img.cols;
+}
+
+int image::height() {
+	return img.rows;
 }
 
 pybind11::array_t<uint8_t> image::to_numpy() {
@@ -66,6 +81,9 @@ void bind_image(pybind11::module& m) {
 		.def(pybind11::init<std::string>())
 		.def("read_image", &image::read_image, pybind11::arg("path"))
 		.def("get_image", &image::get_image)
+		.def("draw_rect", &image::draw_rect, pybind11::arg("rects"))
 		.def("is_empty", &image::is_empty)
+		.def("width", &image::width)
+		.def("hwight", &image::height)
 		.def("to_numpy", &image::to_numpy);
 }
