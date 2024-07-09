@@ -1,5 +1,6 @@
 #include <chrono>
 #include "cascade_handler.h"
+#include "rect.h"
 #include "bind.h"
 
 cascade_handler::cascade_handler(std::string path) {
@@ -16,7 +17,7 @@ cv::CascadeClassifier cascade_handler::get_cascade() {
 	return cascade;
 }
 
-std::vector<cv::Rect> cascade_handler::get_rect(image raw_img, double scale_factor, int min_neighbors, int min_size_width, int min_size_height) {
+std::vector<std::map<std::string, int>> cascade_handler::get_rect(image raw_img, double scale_factor, int min_neighbors, int min_size_width, int min_size_height) {
 	//cv::Mat gray_img;
 	//cv::cvtColor(raw_img.get_image(), gray_img, cv::COLOR_BGR2GRAY);
 	cv::Mat gray_img = raw_img.get_image();
@@ -25,10 +26,10 @@ std::vector<cv::Rect> cascade_handler::get_rect(image raw_img, double scale_fact
 	cv::Size min_size = cv::Size(min_size_width, min_size_height);
 	cascade.detectMultiScale(gray_img, rects, scale_factor, min_neighbors, 0, min_size);
 
-	return rects;
+	return convert_to_maps(rects);
 }
 
-std::vector<cv::Rect> cascade_handler::get_rect(image raw_img, std::array<int, 2> detect_center, int detect_width, int detect_height, double scale_factor, int min_neighbors, int min_size_width, int min_size_height) {
+std::vector<std::map<std::string, int>> cascade_handler::get_rect(image raw_img, std::array<int, 2> detect_center, int detect_width, int detect_height, double scale_factor, int min_neighbors, int min_size_width, int min_size_height) {
 	cv::Rect detect_range(cv::Point(detect_center[0] - detect_width / 2, detect_center[1] - detect_height / 2), cv::Point(detect_center[0] + detect_width / 2, detect_center[1] + detect_height / 2));
 	if (detect_range.x < 0) {
 		detect_range.x = 0;
@@ -44,44 +45,44 @@ std::vector<cv::Rect> cascade_handler::get_rect(image raw_img, std::array<int, 2
 	}
 	cv::Mat detect_img = raw_img.get_image()(detect_range);
 	
-	std::vector<cv::Rect> rects = get_rect(detect_img, scale_factor, min_neighbors, min_size_width, min_size_height);
-	std::vector<cv::Rect> results = {};
-	for (cv::Rect rect : rects) {
-		int x = rect.x + detect_center[0] - detect_width / 2;
-		int y = rect.y + detect_center[1] - detect_height / 2;
-		results.push_back(cv::Rect(x, y, rect.width, rect.height));
+	std::vector<std::map<std::string, int>> rects = get_rect(detect_img, scale_factor, min_neighbors, min_size_width, min_size_height);
+	std::vector<std::map<std::string, int>> results;
+	for (std::map<std::string, int> rect : rects) {
+		int x = rect["x"] + detect_center[0] - detect_width / 2;
+		int y = rect["y"] + detect_center[1] - detect_height / 2;
+		results.push_back(convert_to_map(cv::Rect(x, y, rect["width"], rect["height"])));
 	}
 
 	return results;
 }
 
 std::vector<std::array<int, 2>> cascade_handler::get_target_coordinates(image raw_img, double scale_factor, int min_neighbors, int min_size_width, int min_size_height) {
-	std::vector<cv::Rect> rects = get_rect(raw_img, scale_factor, min_neighbors, min_size_width, min_size_height);
+	std::vector<std::map<std::string, int>> rects = get_rect(raw_img, scale_factor, min_neighbors, min_size_width, min_size_height);
 
 	std::vector<std::array<int, 2>> coordinates = {};
-	for (cv::Rect rect : rects) {
-		coordinates.push_back({ rect.x + rect.width / 2, rect.y + rect.height / 2 });
+	for (std::map<std::string, int> rect : rects) {
+		coordinates.push_back({ rect["x"] + rect["width"] / 2, rect["y"] + rect["height"] / 2 });
 	}
 
 	return coordinates;
 }
 
 std::vector<std::array<int, 2>> cascade_handler::get_target_coordinates(image raw_img, std::array<int, 2> detect_center, int detect_width, int detect_height, double scale_factor, int min_neighbors, int min_size_width, int min_size_height) {
-	std::vector<cv::Rect> rects = get_rect(raw_img, detect_center, detect_width, detect_height, scale_factor, min_neighbors, min_size_width, min_size_height);
+	std::vector<std::map<std::string, int>> rects = get_rect(raw_img, detect_center, detect_width, detect_height, scale_factor, min_neighbors, min_size_width, min_size_height);
 
 	std::vector<std::array<int, 2>> coordinates = {};
-	for (cv::Rect rect : rects) {
-		coordinates.push_back({ rect.x + rect.width / 2, rect.y + rect.height / 2 });
+	for (std::map<std::string, int> rect : rects) {
+		coordinates.push_back({ rect["x"] + rect["width"] / 2, rect["y"] + rect["height"] / 2 });
 	}
 
 	return coordinates;
 }
 
 std::array<int, 2> cascade_handler::get_target_coordinates_head(image raw_img, std::array<int, 2> detect_center, int detect_width, int detect_height, double scale_factor, int min_neighbors, int min_size_width, int min_size_height) {
-	std::vector<cv::Rect> rects = get_rect(raw_img, detect_center, detect_width, detect_height, scale_factor, min_neighbors, min_size_width, min_size_height);
+	std::vector<std::map<std::string, int>> rects = get_rect(raw_img, detect_center, detect_width, detect_height, scale_factor, min_neighbors, min_size_width, min_size_height);
 
 	if (rects.size() > 0) {
-		return { rects[0].x + rects[0].width / 2, rects[0].y + rects[0].height / 2 };
+		return { rects[0]["x"] + rects[0]["width"] / 2, rects[0]["y"] + rects[0]["height"] / 2 };
 	}
 	else {
 		return { -1, -1 };
@@ -91,7 +92,7 @@ std::array<int, 2> cascade_handler::get_target_coordinates_head(image raw_img, s
 double cascade_handler::measure_prediction_time(image test_img) {
 	std::chrono::system_clock::time_point start = std::chrono::system_clock::now();
 
-	std::vector<cv::Rect> rects = get_rect(test_img);
+	std::vector<std::map<std::string, int>> rects = get_rect(test_img);
 
 	std::chrono::system_clock::time_point end = std::chrono::system_clock::now();
 	std::chrono::duration<double, std::milli> elapsed_time = end - start;

@@ -22,7 +22,7 @@ int main() {
 	while (true) {
 		image img = camera.capture();
     
-		std::vector<cv::Rect> rects = {};
+		std::vector<std::map<std::string, int>> rects;
 		if (!detected) {
 			rects = cascade.get_rect(img);
 		}
@@ -31,9 +31,9 @@ int main() {
 		}
 		
 		if (rects.size() > 0) {
-			prev_detect_pos = { rects[0].x + rects[0].width / 2, rects[0].y + rects[0].height / 2 };
-			prev_rect_width = rects[0].width;
-			prev_rect_height = rects[0].height;
+			prev_detect_pos = { rects[0]["x"] + rects[0]["width"] / 2, rects[0]["y"] + rects[0]["height"] / 2};
+			prev_rect_width = rects[0]["width"];
+			prev_rect_height = rects[0]["height"];
 			detected = true;
 			img.draw_rect({ rects[0] });
 		}
