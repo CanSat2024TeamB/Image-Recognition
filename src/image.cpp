@@ -47,7 +47,7 @@ void image::draw_rect(std::vector<cv::Rect> rects) {
 }
 
 void image::save(std::string path) {
-	if (!is_empty) {
+	if (!is_empty()) {
 		cv::imwrite(path, img);
 	}
 }
