@@ -8,7 +8,7 @@
 
 int main() {
 	camera_handler camera;
-	cascade_handler cascade("assets/haarcascade_traffic_cone.xml");
+	cascade_handler cascade("assets/haarcascade_frontalface_alt.xml");
 	std::array<int, 2> prev_detect_pos;
 	int prev_rect_width = 0;
 	int prev_rect_height = 0;
@@ -21,9 +21,7 @@ int main() {
 
 	while (true) {
 		image img = camera.capture();
-
-		//std::chrono::system_clock::time_point start = std::chrono::system_clock::now();
-
+    
 		std::vector<cv::Rect> rects = {};
 		if (!detected) {
 			rects = cascade.get_rect(img);
@@ -36,7 +34,7 @@ int main() {
 			prev_detect_pos = { rects[0].x + rects[0].width / 2, rects[0].y + rects[0].height / 2 };
 			prev_rect_width = rects[0].width;
 			prev_rect_height = rects[0].height;
-			//detected = true;
+			detected = true;
 			img.draw_rect({ rects[0] });
 		}
 		else {
