@@ -152,6 +152,7 @@
     <ClCompile Include="src\cascade_handler.cpp" />
     <ClCompile Include="src\image.cpp" />
     <ClCompile Include="src\main.cpp" />
+    <ClCompile Include="src\rect.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\bind.h" />
@@ -159,6 +160,7 @@
     <ClInclude Include="src\cascade_handler.h" />
     <ClInclude Include="src\header.h" />
     <ClInclude Include="src\image.h" />
+    <ClInclude Include="src\rect.h" />
   </ItemGroup>
   <ItemGroup>
     <Image Include="assets\face_sample.jpg" />

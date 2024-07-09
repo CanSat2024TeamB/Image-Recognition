@@ -1,4 +1,5 @@
 #include "image.h"
+#include "rect.h"
 #include "bind.h"
 
 image::image() {}
@@ -39,9 +40,9 @@ void image::show_until_any_input(std::string window_name, double key_wait_time) 
 	return;
 }
 
-void image::draw_rect(std::vector<cv::Rect> rects) {
-	for (cv::Rect rect : rects) {
-		cv::rectangle(img, rect, cv::Scalar(255, 0, 0));
+void image::draw_rect(std::vector<std::map<std::string, int>> rects) {
+	for (std::map<std::string, int> rect : rects) {
+		cv::rectangle(img, convert_to_rect(rect), cv::Scalar(255, 0, 0));
 	}
 	return;
 }
