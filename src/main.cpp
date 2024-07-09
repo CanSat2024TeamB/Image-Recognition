@@ -16,11 +16,12 @@ int main() {
 	int detect_width_margin = 50;
 	int detect_height_margin = 50;
 
+	std::array<int, 2> pos = { -1, -1 };
+	std::array<float, 2> normalized_pos = { -1, -1 };
+
 	while (true) {
 		image img = camera.capture();
-
-		std::chrono::system_clock::time_point start = std::chrono::system_clock::now();
-
+    
 		std::vector<cv::Rect> rects = {};
 		if (!detected) {
 			rects = cascade.get_rect(img);
@@ -40,10 +41,29 @@ int main() {
 			detected = false;
 		}
 
+		std::chrono::system_clock::time_point start = std::chrono::system_clock::now();
+
+		if (!detected) {
+			std::vector<std::array<int, 2>> pos_list = cascade.get_target_coordinates(img);
+			if (pos_list.size() > 0) {
+				pos = pos_list[0];
+				normalized_pos = camera.normalize_position(pos);
+			}
+			else {
+				pos = { -1, -1 };
+				normalized_pos = { -1, -1 };
+			}
+		}
+		else {
+			pos = cascade.get_target_coordinates_head(img, prev_detect_pos, prev_rect_width + detect_width_margin, prev_rect_height + detect_height_margin);
+			normalized_pos = camera.normalize_position(pos);
+		}
+
 		std::chrono::system_clock::time_point end = std::chrono::system_clock::now();
 		std::chrono::duration<double, std::milli> elapsed_time = end - start;
 
 		std::cout << "time: " << elapsed_time.count() << std::endl;
+		std::cout << "pos: " << normalized_pos[0] << " " << normalized_pos[1] << std::endl;
 
 		img.show();
 

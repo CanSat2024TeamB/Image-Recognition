@@ -17,8 +17,9 @@ cv::CascadeClassifier cascade_handler::get_cascade() {
 }
 
 std::vector<cv::Rect> cascade_handler::get_rect(image raw_img, double scale_factor, int min_neighbors, int min_size_width, int min_size_height) {
-	cv::Mat gray_img;
-	cv::cvtColor(raw_img.get_image(), gray_img, cv::COLOR_BGR2GRAY);
+	//cv::Mat gray_img;
+	//cv::cvtColor(raw_img.get_image(), gray_img, cv::COLOR_BGR2GRAY);
+	cv::Mat gray_img = raw_img.get_image();
 
 	std::vector<cv::Rect> rects;
 	cv::Size min_size = cv::Size(min_size_width, min_size_height);

@@ -167,6 +167,7 @@
   </ItemGroup>
   <ItemGroup>
     <Xml Include="assets\haarcascade_frontalface_alt.xml" />
+    <Xml Include="assets\haarcascade_traffic_cone.xml" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

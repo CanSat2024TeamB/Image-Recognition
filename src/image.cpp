@@ -46,6 +46,12 @@ void image::draw_rect(std::vector<cv::Rect> rects) {
 	return;
 }
 
+void image::save(std::string path) {
+	if (!is_empty) {
+		cv::imwrite(path, img);
+	}
+}
+
 bool image::is_empty() {
 	return img.empty();
 }
@@ -82,6 +88,7 @@ void bind_image(pybind11::module& m) {
 		.def("read_image", &image::read_image, pybind11::arg("path"))
 		.def("get_image", &image::get_image)
 		.def("draw_rect", &image::draw_rect, pybind11::arg("rects"))
+		.def("save", &image::save, pybind11::arg("path"))
 		.def("is_empty", &image::is_empty)
 		.def("width", &image::width)
 		.def("hwight", &image::height)
