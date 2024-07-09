@@ -63,5 +63,6 @@
     <Xml Include="assets\haarcascade_frontalface_alt.xml">
       <Filter>リソース ファイル</Filter>
     </Xml>
+    <Xml Include="assets\haarcascade_traffic_cone.xml" />
   </ItemGroup>
 </Project>

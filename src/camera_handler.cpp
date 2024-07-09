@@ -59,6 +59,15 @@ image camera_handler::capture() {
 	return image(frame);
 }
 
+std::array<float, 2> camera_handler::normalize_position(std::array<int, 2> position) {
+	if (get_width() == 0 || get_height() == 0) {
+		return { (float)position[0], (float)position[1] };
+	}
+	else {
+		return { (float)((float)position[0] / get_width() - 0.5), (float)((float)position[1] / get_height() - 0.5) };
+	}
+}
+
 //pybind
 void bind_camera_handler(pybind11::module& m) {
 	pybind11::class_<camera_handler>(m, "camera_handler")
@@ -69,5 +78,6 @@ void bind_camera_handler(pybind11::module& m) {
 		.def("get_width", &camera_handler::get_width)
 		.def("get_height", &camera_handler::get_height)
 		.def("if_connected", &camera_handler::if_connected)
-		.def("capture", &camera_handler::capture);
+		.def("capture", &camera_handler::capture)
+		.def("normalize_position", &camera_handler::normalize_position, pybind11::arg("position"));
 }

@@ -6,6 +6,7 @@
 class image {
 private:
 	cv::Mat img;
+
 public:
 	image();
 	image(cv::Mat img);
@@ -19,6 +20,7 @@ public:
 	void show(std::string window_name = "");
 	void show_until_any_input(std::string window_name = "", double key_wait_time = 0);
 	void draw_rect(std::vector<cv::Rect> rects);
+	void save(std::string path);
 	bool is_empty();
 	int width();
 	int height();

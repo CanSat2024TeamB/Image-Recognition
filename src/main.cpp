@@ -8,7 +8,7 @@
 
 int main() {
 	camera_handler camera;
-	cascade_handler cascade("assets/haarcascade_frontalface_alt.xml");
+	cascade_handler cascade("assets/haarcascade_traffic_cone.xml");
 	std::array<int, 2> prev_detect_pos;
 	int prev_rect_width = 0;
 	int prev_rect_height = 0;
@@ -17,6 +17,7 @@ int main() {
 	int detect_height_margin = 50;
 
 	std::array<int, 2> pos = { -1, -1 };
+	std::array<float, 2> normalized_pos = { -1, -1 };
 
 	while (true) {
 		image img = camera.capture();
@@ -35,7 +36,7 @@ int main() {
 			prev_detect_pos = { rects[0].x + rects[0].width / 2, rects[0].y + rects[0].height / 2 };
 			prev_rect_width = rects[0].width;
 			prev_rect_height = rects[0].height;
-			detected = true;
+			//detected = true;
 			img.draw_rect({ rects[0] });
 		}
 		else {
@@ -48,20 +49,23 @@ int main() {
 			std::vector<std::array<int, 2>> pos_list = cascade.get_target_coordinates(img);
 			if (pos_list.size() > 0) {
 				pos = pos_list[0];
+				normalized_pos = camera.normalize_position(pos);
 			}
 			else {
 				pos = { -1, -1 };
+				normalized_pos = { -1, -1 };
 			}
 		}
 		else {
 			pos = cascade.get_target_coordinates_head(img, prev_detect_pos, prev_rect_width + detect_width_margin, prev_rect_height + detect_height_margin);
+			normalized_pos = camera.normalize_position(pos);
 		}
 
 		std::chrono::system_clock::time_point end = std::chrono::system_clock::now();
 		std::chrono::duration<double, std::milli> elapsed_time = end - start;
 
 		std::cout << "time: " << elapsed_time.count() << std::endl;
-		std::cout << "pos: " << pos[0] << " " << pos[1] << std::endl;
+		std::cout << "pos: " << normalized_pos[0] << " " << normalized_pos[1] << std::endl;
 
 		img.show();
 

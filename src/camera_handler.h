@@ -10,6 +10,7 @@ private:
 	cv::VideoCapture camera;
 
 	void get_resolution();
+
 public:
 	camera_handler();
 	camera_handler(int device_id);
@@ -22,4 +23,5 @@ public:
 	bool if_connected();
 	cv::VideoCapture get_camera();
 	image capture();
+	std::array<float, 2> normalize_position(std::array<int, 2> position);
 };
